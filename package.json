@@ -1,0 +1,32 @@
+{
+  "name": "sevalla-deployment",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "install:all": "npm run install:frontend && npm run install:backend",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:all": "npm run build:frontend && npm run dev:backend",
+    
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:all": "npm run build:frontend && npm run build:backend && npm run copy:frontend",
+    
+    "copy:frontend": "node copy-frontend.js",
+    "clean:all": "npm run clean:frontend && npm run clean:backend",
+    "clean:frontend": "cd frontend && npm run clean",
+    "clean:backend": "cd backend && npm run clean",
+    
+    "start": "cd backend && npm start",
+    "start:production": "NODE_ENV=production cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "rimraf": "^6.0.1"
+  }
+}
