@@ -69,6 +69,7 @@ app.get('/api/users', (req, res) => {
       { id: 3, name: 'Bob Johnson', email: 'bob@example.com' },
       { id: 3, name: 'Hassan Johnson', email: 'hassan@example.com' },
       { id: 3, name: 'Milad Johnson', email: 'milad@example.com' },
+      { id: 3, name: 'Milad Johnson', email: 'milad2@example.com' },
     ],
     timestamp: new Date().toISOString()
   });
