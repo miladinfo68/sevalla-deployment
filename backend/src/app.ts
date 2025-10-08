@@ -95,11 +95,16 @@ app.get('*', (req, res, next) => {
 });
 
 // Error handling middleware
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: unknown, req: express.Request, res: express.Response) => {
   console.error('Error:', err);
+  const message = isProduction
+    ? 'Something went wrong!'
+    : err instanceof Error
+      ? err.message
+      : String(err);
   res.status(500).json({ 
     error: 'Internal Server Error',
-    message: isProduction ? 'Something went wrong!' : err.message
+    message
   });
 });
 
@@ -112,7 +117,7 @@ app.use('/api/*', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
   console.log(`🚀 Backend server running on http://localhost:${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
   console.log(`🌍 Frontend served from: http://localhost:${PORT}`);
